@@ -23,7 +23,7 @@ Memory card (suggest 64GB)
 PC/laptop (to flash the SD card)
 
 ## Setting Up and First Boot
-1. First, set up your Jetson by following the instructions here: [Setting up Jetson with JetPack](https://github.com/dusty-nv/jetson-inference/blob/master/docs/jetpack-setup-2.md). You might want to connect ethernet cable and your camera during first boot as well.
+1. First, set up your Jetson by following the instructions here: [Setting up Jetson with JetPack](https://github.com/dusty-nv/jetson-inference/blob/master/docs/jetpack-setup-2.md). You may want to connect ethernet cable and your camera during first boot as well.
    
 2. After your successful set up and first boot, you may want to increase SWAP memory to 4GB by opening up the terminal and write:
    ```
@@ -46,15 +46,15 @@ PC/laptop (to flash the SD card)
    # REBOOT!
    ```
 
-## Steps
-1. Follow set up, flash sd card image, bleana echer
-2. First boot
-3. open terminal, write
-```
-$ git clone --recursive --depth=1 https://github.com/dusty-nv/jetson-inference
-$ cd jetson-inference
-$ docker/run.sh
-```
+## Running The Project
+1. Run the pre-built docker container
+   ```
+   $ git clone --recursive --depth=1 https://github.com/dusty-nv/jetson-inference
+   $ cd jetson-inference
+   $ docker/run.sh
+   ```
+   
+2. 
 
 5. While it takes 2-3 minutes to load, open Chromium on desktop and go to kaggle.com to download the dataset we are gonna be using https://www.kaggle.com/datasets/abdallahalidev/plantvillage-dataset
 6. actually prolly this one cuz the previous one too big https://www.kaggle.com/datasets/ashishjstar/lettuce-diseases 
