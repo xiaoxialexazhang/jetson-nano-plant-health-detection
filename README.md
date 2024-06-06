@@ -47,7 +47,7 @@ PC/laptop (to flash the SD card)
    ```
 
 ## Running The Project
-1. [Run the pre-built docker container]( https://github.com/dusty-nv/jetson-inference/blob/master/docs/aux-docker.md)
+1. [Run the pre-built docker container]( https://github.com/dusty-nv/jetson-inference/blob/master/docs/aux-docker.md), it might take a while especially if you run it for the first time. 
    ```
    $ git clone --recursive --depth=1 https://github.com/dusty-nv/jetson-inference
    $ cd jetson-inference
