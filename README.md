@@ -50,6 +50,7 @@ PC/laptop (to flash the SD card)
    After rebooting, you can check your swap again just to ensure. 
 
 ## Running The Project
+### Preparation
 1. [Run the pre-built docker container]( https://github.com/dusty-nv/jetson-inference/blob/master/docs/aux-docker.md), it might take a while especially if you run it for the first time. 
    ```
    $ git clone --recursive --depth=1 https://github.com/dusty-nv/jetson-inference
@@ -74,7 +75,18 @@ PC/laptop (to flash the SD card)
    ![image](https://github.com/xiaoxialexazhang/jetson-nano-safe-lettuce/assets/170693946/dc11716d-3142-4794-847d-a15d4c756fea)
    It should contain 2813 images in .jpg and already split into test, train, and val. 
 
-5. After dataset into train, val, labels.txt
+4. Open files on your left panel bar, go to home, jetson-inference, python, training, classification, data and make a new folder called "lettuce".
+   ![image](https://github.com/xiaoxialexazhang/jetson-nano-safe-lettuce/assets/170693946/c2eae7b0-4464-40c9-947b-10d0a2d9cb66)
+
+5. Then, go to downloads, right click on archive.zip and extract it to jetson-inference/python/training/classification/data/lettuce.
+   
+6. Now, open the lettuce folder in jetson-inference/python/training/classification/data. You should see 3 folders each as test, train, and valid.
+   ![image](https://github.com/xiaoxialexazhang/jetson-nano-safe-lettuce/assets/170693946/d5324380-7a77-4af5-826c-638eed1c4479)
+   
+7. Rename the "valid" folder to "val". And create a labels.txt file inside the lettuce folder by writing the following to your terminal (make sure you are inside the docker container and inside jetson-inference/python/training/classification/data/lettuce):
+   ```
+   
+
 
 run docker container
 
