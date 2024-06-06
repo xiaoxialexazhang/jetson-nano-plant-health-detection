@@ -55,4 +55,15 @@ PC/laptop (to flash the SD card)
    ```
 2. After the jetson-inference docker container is downloaded, open chromium web browser on your jetson desktop. Then, go to [Kaggle Lettuce Diseases Dataset](https://www.kaggle.com/datasets/ashishjstar/lettuce-diseases) and download it. 
 
-3. 
+After dataset into train, val, labels.txt
+
+run docker container
+cd python
+cd training
+cd classification
+python3 train.py --model-dir=models/lettuce --batch-size=4 --epochs=35 data/lettuce
+it took around 4 hours for me
+python3 onnx_export.py --model-dir=models/lettuce
+imagenet --model=models/lettuce/resnet18.onnx --input_blob=input_0 --output_blob=output_0 --labels=data/lettuce/labels.txt /dev/video0
+
+
