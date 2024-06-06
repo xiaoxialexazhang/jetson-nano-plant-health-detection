@@ -85,9 +85,17 @@ PC/laptop (to flash the SD card)
    
 7. Rename the "valid" folder to "val". And create a labels.txt file inside the lettuce folder by writing the following to your terminal (make sure you are inside the docker container and inside jetson-inference/python/training/classification/data/lettuce):
    ```
-   
+   nano labels.txt
+   ```
+   ![image](https://github.com/xiaoxialexazhang/jetson-nano-safe-lettuce/assets/170693946/665397f9-eb61-4310-b6c1-3bf5c108c5da)
+   Edit the labels.txt file. Make sure all labels are in alphabetical order. There should be three labels, each in a line. 
+   ![image](https://github.com/xiaoxialexazhang/jetson-nano-safe-lettuce/assets/170693946/b9e8bad0-59cb-4c8a-9a52-87230a2f8ac3)
+   Then, Ctrl+x to exit, type Y to save changes, and press enter to confirm that the changes are saved to labels.txt
+   ![image](https://github.com/xiaoxialexazhang/jetson-nano-safe-lettuce/assets/170693946/6f0b7c31-47e4-4831-b1c8-a47896961ff8)
 
+8. Now, we are finally done with prep work! We can now proceed on training our lettuce model. 
 
+### Training The Model
 run docker container
 
 cd python
