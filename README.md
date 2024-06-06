@@ -1,5 +1,5 @@
 # Eat that lettuce or not? Jetson Nano can help! 
-This is an image classification project built on Jetson Nano that aims to help people identify what disease their lettuce might have by looking at the lettuce leaves. 
+This is an image classification project built on Jetson Nano that retrains resnet-18 on a lettuce disease dataset and aims to help people identify what disease their lettuce might have by looking at the lettuce leaves. 
 
 It will classify a lettuce leaf as healthy, bacterially infected, having downy mildew, having powdery mildew, having septoria blight, mixed with shepherd purse weed, virally infected, or having wilt and leaf blight. 
 
@@ -58,12 +58,19 @@ PC/laptop (to flash the SD card)
 After dataset into train, val, labels.txt
 
 run docker container
+
 cd python
+
 cd training
+
 cd classification
+
 python3 train.py --model-dir=models/lettuce --batch-size=4 --epochs=35 data/lettuce
+
 it took around 4 hours for me
+
 python3 onnx_export.py --model-dir=models/lettuce
+
 imagenet --model=models/lettuce/resnet18.onnx --input_blob=input_0 --output_blob=output_0 --labels=data/lettuce/labels.txt /dev/video0
 
 
