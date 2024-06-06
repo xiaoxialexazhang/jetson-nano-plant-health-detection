@@ -53,6 +53,14 @@ PC/laptop (to flash the SD card)
    $ cd jetson-inference
    $ docker/run.sh
    ```
+
+$ cd jetson-inference/build/aarch64/bin
+$ ./imagenet.py images/orange_0.jpg images/test/output_0.jpg
+$ ./imagenet.py --network=resnet-18 images/jellyfish.jpg images/test/output_jellyfish.jpg
+$ ./imagenet.py /dev/video0 
+This above helps us ensure imagenet is working. 
+
+   
 2. After the jetson-inference docker container is downloaded, open chromium web browser on your jetson desktop. Then, go to [Kaggle Lettuce Diseases Dataset](https://www.kaggle.com/datasets/ashishjstar/lettuce-diseases) and download it. 
 
 After dataset into train, val, labels.txt
@@ -71,6 +79,6 @@ it took around 4 hours for me
 
 python3 onnx_export.py --model-dir=models/lettuce
 
-imagenet --model=models/lettuce/resnet18.onnx --input_blob=input_0 --output_blob=output_0 --labels=data/lettuce/labels.txt /dev/video0
+imagenet --model=models/lettuce/resnet18.onnx --labels=data/lettuce/labels.txt --input_blob=input_0 --output_blob=output_0 /dev/video0
 
 
