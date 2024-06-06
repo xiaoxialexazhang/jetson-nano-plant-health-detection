@@ -20,4 +20,5 @@ $ cd jetson-inference
 $ docker/run.sh
 ```
 
-5. After it takes 2-3 minutes to load, 
+5. While it takes 2-3 minutes to load, open Chromium on desktop and go to kaggle.com to download the dataset we are gonna be using https://www.kaggle.com/datasets/abdallahalidev/plantvillage-dataset
+6. 
