@@ -21,4 +21,5 @@ $ docker/run.sh
 ```
 
 5. While it takes 2-3 minutes to load, open Chromium on desktop and go to kaggle.com to download the dataset we are gonna be using https://www.kaggle.com/datasets/abdallahalidev/plantvillage-dataset
-6. 
+6. actually prolly this one cuz the previous one too big https://www.kaggle.com/datasets/ashishjstar/lettuce-diseases 
+7. 
