@@ -5,16 +5,48 @@ It will classify a lettuce leaf as healthy, bacterially infected, having downy m
 
 Narrowing down the leaf condition to the above 8 classes makes it easier for people to search up online about whether their lettuce is safe to consume or not: can they eat the whole thing or which parts do they have to compost? This helps us reduce food waste and food poisoning incidents. 
 
-# Required devices
-Jetson Nano 2GB/4GB (I'm using a 4GB)
-Raspberry Pi Camera/USB Webcam (I'm using a usb webcam)
-Power supply
-Keyboard and mouse
-Monitor and HDMI cable
-Ethernet cable
-Memory card (I'd suggest more than 32GB)
+## Requirede Hardwares
+Jetson Nano 2GB/4GB
 
-# Steps: 
+Camera (USB webcam/Raspberry Pi camera)
+
+Power supply (https://forums.developer.nvidia.com/t/power-supply-considerations-for-jetson-nano-developer-kit/71637)
+
+Keyboard and mouse
+
+Monitor and HDMI cable
+
+Ethernet cable
+
+Memory card (suggest 64GB)
+
+PC/laptop (to flash the SD card)
+
+## Setting Up and First Boot
+1. First, set up your Jetson by following the instructions here: [Setting up Jetson with JetPack](https://github.com/dusty-nv/jetson-inference/blob/master/docs/jetpack-setup-2.md). You might want to connect ethernet cable and your camera during first boot as well.
+   
+2. After your successful set up and first boot, you may want to increase SWAP memory to 4GB by opening up the terminal and write:
+   ```
+   # Check your swap (should see 4071 if 4GB swap)
+   free -m
+   
+   # Disable ZRAM
+   sudo systemctl disable nvzramconfig
+
+   # Create 4GB swap file
+   sudo fallocate -l 4G /mnt/4GB.swap
+   sudo chmod 600 /mnt/4GB.swap
+   sudo mkswap /mnt/4GB.swap
+
+   # Append the following line to /etc/fstab
+   sudo su
+   echo "/mnt/4GB.swap swap swap defaults 0 0" >> /etc/fstab
+   exit
+
+   # REBOOT!
+   ```
+
+## Steps
 1. Follow set up, flash sd card image, bleana echer
 2. First boot
 3. open terminal, write
