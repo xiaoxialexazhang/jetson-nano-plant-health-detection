@@ -1,9 +1,11 @@
 # Eat that lettuce or not? Jetson Nano can help! 
-This is an image classification project built on Jetson Nano that retrains resnet-18 on a lettuce disease dataset and aims to help people identify what disease their lettuce might have by looking at the lettuce leaves. 
+This is an image classification project built on Jetson Nano that retrains resnet-18 on a lettuce disease dataset and aims to help people identify what's wrong with their lettuce by looking at the lettuce leaves. 
 
-It will classify a lettuce leaf as healthy, bacterially infected, having downy mildew, having powdery mildew, having septoria blight, mixed with shepherd purse weed, virally infected, or having wilt and leaf blight. 
+It will classify a lettuce leaf as healthy, bacterially infected, or virally infected and show how confident it is upon this judgement. Narrowing down the leaf condition to the above 3 classes makes it easier for people to search up online about whether their lettuce is safe to consume or not. 
 
-Narrowing down the leaf condition to the above 8 classes makes it easier for people to search up online about whether their lettuce is safe to consume or not: can they eat the whole thing or which parts do they have to compost? This helps us reduce food waste and food poisoning incidents. 
+For example, people can now simply search up "bacterially infected lettuce" without wondering which disease their lettuce have. They can easily answer whether if they can eat the whole thing or they have to compost some parts base on their search results. 
+
+This should thus help us reduce food waste and food poisoning incidents. 
 
 ## Requirede Hardwares
 Jetson Nano 2GB/4GB
@@ -45,6 +47,7 @@ PC/laptop (to flash the SD card)
 
    # REBOOT!
    ```
+   After rebooting, you can check your swap again just to ensure. 
 
 ## Running The Project
 1. [Run the pre-built docker container]( https://github.com/dusty-nv/jetson-inference/blob/master/docs/aux-docker.md), it might take a while especially if you run it for the first time. 
@@ -53,17 +56,25 @@ PC/laptop (to flash the SD card)
    $ cd jetson-inference
    $ docker/run.sh
    ```
+2. Test your imagenet to ensure that it's working. It might take a while the first time you run it.
+   ```
+   # First, run docker container and go to build/aarch64/bin directory
+   $ cd jetson-inference/build/aarch64/bin
 
-$ cd jetson-inference/build/aarch64/bin
-$ ./imagenet.py images/orange_0.jpg images/test/output_0.jpg
-$ ./imagenet.py --network=resnet-18 images/jellyfish.jpg images/test/output_jellyfish.jpg
-$ ./imagenet.py /dev/video0 
-This above helps us ensure imagenet is working. 
+   # 
+   $ ./imagenet.py images/orange_0.jpg images/test/output_0.jpg
 
-   
-2. After the jetson-inference docker container is downloaded, open chromium web browser on your jetson desktop. Then, go to [Kaggle Lettuce Diseases Dataset](https://www.kaggle.com/datasets/ashishjstar/lettuce-diseases) and download it. 
+   # 
+   $ ./imagenet.py --network=resnet-18 images/jellyfish.jpg images/test/output_jellyfish.jpg
 
-After dataset into train, val, labels.txt
+   # 
+   $ ./imagenet.py /dev/video0
+   ```
+3. After the jetson-inference docker container is downloaded and you have tested your imagenet, open chromium web browser on your jetson desktop. Then, go to [Kaggle Lettuce Diseases Dataset](https://www.kaggle.com/datasets/santoshshaha/lettuce-plant-disease-dataset) and download it.
+   ![image](https://github.com/xiaoxialexazhang/jetson-nano-safe-lettuce/assets/170693946/dc11716d-3142-4794-847d-a15d4c756fea)
+   It should contain 2813 images in .jpg and already split into test, train, and val. 
+
+5. After dataset into train, val, labels.txt
 
 run docker container
 
