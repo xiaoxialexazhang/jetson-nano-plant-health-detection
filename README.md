@@ -25,7 +25,7 @@ PC/laptop (to flash the SD card)
 ## Setting Up and First Boot
 1. First, set up your Jetson by following the instructions here: [Setting up Jetson with JetPack](https://github.com/dusty-nv/jetson-inference/blob/master/docs/jetpack-setup-2.md). You may want to connect ethernet cable and your camera during first boot as well.
    
-2. After your successful set up and first boot, you may want to increase SWAP memory to 4GB by opening up the terminal and write:
+2. After your successful set up and first boot, you may want to increase swap memory to 4GB by opening up the terminal and write:
    ```
    # Check your swap (should see 4071 if 4GB swap)
    free -m
@@ -47,15 +47,12 @@ PC/laptop (to flash the SD card)
    ```
 
 ## Running The Project
-1. Run the pre-built docker container
+1. [Run the pre-built docker container]( https://github.com/dusty-nv/jetson-inference/blob/master/docs/aux-docker.md)
    ```
    $ git clone --recursive --depth=1 https://github.com/dusty-nv/jetson-inference
    $ cd jetson-inference
    $ docker/run.sh
    ```
-   
-2. 
+2. After the jetson-inference docker container is downloaded, open chromium web browser on your jetson desktop. Then, go to [Kaggle Lettuce Diseases Dataset](https://www.kaggle.com/datasets/ashishjstar/lettuce-diseases) and download it. 
 
-5. While it takes 2-3 minutes to load, open Chromium on desktop and go to kaggle.com to download the dataset we are gonna be using https://www.kaggle.com/datasets/abdallahalidev/plantvillage-dataset
-6. actually prolly this one cuz the previous one too big https://www.kaggle.com/datasets/ashishjstar/lettuce-diseases 
-7. 
+3. 
