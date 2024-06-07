@@ -10,7 +10,7 @@ This could thus help us reduce food waste and food poisoning incidents.
 
 ## Video
 
-Here: 
+[Safe Lettuce with Jetson Nano](https://youtu.be/Ad-ufSdDZ80)
 
 ## Model Accuracy 
 
@@ -30,7 +30,7 @@ Jetson Nano 2GB/4GB
 
 Camera (USB webcam/Raspberry Pi camera)
 
-Power supply (https://forums.developer.nvidia.com/t/power-supply-considerations-for-jetson-nano-developer-kit/71637)
+Power supply ([suggested](https://forums.developer.nvidia.com/t/power-supply-considerations-for-jetson-nano-developer-kit/71637))
 
 Keyboard and mouse
 
