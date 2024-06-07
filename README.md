@@ -2,15 +2,17 @@
 
 This is an image classification project built on Jetson Nano that retrains resnet-18 on a lettuce disease dataset and aims to help people identify what's wrong with their lettuce by looking at the lettuce leaves. 
 
-It will classify a lettuce leaf as healthy, bacterially infected, or fungally dominated and show how confident it is upon this judgement. Narrowing down the leaf condition to the above 3 classes makes it easier for people to search up online about whether their lettuce is safe to consume or not. 
+It will classify a lettuce leaf as healthy, bacterially infected, or fungal-dominated and show how confident it is upon this judgement. Narrowing down the leaf condition to the above 3 classes makes it easier for people to search up online about whether their lettuce is safe to consume or not. 
 
 For example, people can now simply search up "bacterially infected lettuce" without wondering which disease their lettuce have. They can easily answer whether if they can eat the whole thing or they have to compost some parts base on their search results. 
 
 This could thus help us reduce food waste and food poisoning incidents. 
 
-## Video
+## Video & Developer Forum
 
 [Safe Lettuce with Jetson Nano](https://youtu.be/Ad-ufSdDZ80)
+
+[Forum Post](https://forums.developer.nvidia.com/t/safe-lettuce-re-training-resnet-18-on-lettuce-diseases-dataset/295559) 
 
 ## Model Accuracy 
 
