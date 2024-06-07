@@ -16,7 +16,7 @@ Here:
 
 In this project, we are going to train the default ResNet-18 model on a lettuce condition dataset. The model training should take arouhnd 3-4 hours for 35 epochs depending on your batch size and workers. The model accuracy versus epochs chart is shown below: 
 
-image
+![image](https://github.com/xiaoxialexazhang/jetson-nano-safe-lettuce/assets/170693946/e16e5b65-d123-46c9-b881-aba7b959a160)
 
 As shown, 35 epochs will train the model to around 75% accuracy. To reach even higher accuracies for safety purposes, I would suggest trying a larger batch size or epochs count. 
 
