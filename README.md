@@ -103,7 +103,7 @@ PC/laptop (to flash the SD card)
 
 Now, we are finally done with prep work! We can now proceed on training our lettuce model.
 
-### Training The Lettuce Model
+### Training Your Lettuce Model
 1. First, in your terminal, go to jetson-inference and run your docker container. Then, cd to python/training/classification
    ```
    cd jetson-inference
@@ -132,9 +132,16 @@ Now, we are finally done with prep work! We can now proceed on training our lett
    python3 onnx_export.py --model-dir=models/lettuce
    ```
    ![image](https://github.com/xiaoxialexazhang/jetson-nano-safe-lettuce/assets/170693946/9757b992-8576-43f0-ab79-10e9fd481581)
+   ![image](https://github.com/xiaoxialexazhang/jetson-nano-safe-lettuce/assets/170693946/5a431b12-4a5a-482f-8b59-d21a0978df0f)
 
-   
-7. Now, the lettuce model you just traind is ready for testing! You can test it in two ways (make sure you are still in docker and in jetson-inference/python/training/classification):
+   Be mindful of where your model is getting exported to, we are going to need it when it comes to testing!
+
+   Here, in this tutorial, the model is being exported to models/lettuce/resnet18.onnx. If you are using a different model, the onnx file name might be different and should be used instead of resnet18.onnx when you want to test your model. 
+
+
+### Testing Your Lettuce Model
+
+Now, the lettuce model you just traind is ready for testing! You can test it in two ways (make sure you are still in docker and in jetson-inference/python/training/classification):
 
   - Using the test folder that's already in our lettuce folder:
     ```
@@ -153,3 +160,6 @@ Now, we are finally done with prep work! We can now proceed on training our lett
     ```
 
 ## Video
+Here
+
+## Model Accuracy 
