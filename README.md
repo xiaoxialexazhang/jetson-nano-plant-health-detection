@@ -27,7 +27,7 @@ PC/laptop (to flash the SD card)
 ## Setting Up and First Boot
 1. First, set up your Jetson by following the instructions here: [Setting up Jetson with JetPack](https://github.com/dusty-nv/jetson-inference/blob/master/docs/jetpack-setup-2.md). You may want to connect ethernet cable and your camera during first boot as well.
    
-2. After your successful set up and first boot, you may want to increase swap memory to 4GB by opening up the terminal and write:
+2. After your successful set up and first boot, you may want to increase swap memory to 4GB by opening up the terminal and write the following commands:
    ```
    # Check your swap (should see 4071 if 4GB swap)
    free -m
@@ -51,25 +51,27 @@ PC/laptop (to flash the SD card)
 
 ## Running The Project
 ### Preparation
-1. [Run the pre-built docker container]( https://github.com/dusty-nv/jetson-inference/blob/master/docs/aux-docker.md), it might take a while especially if you run it for the first time. 
+1. [Run the pre-built docker container]( https://github.com/dusty-nv/jetson-inference/blob/master/docs/aux-docker.md), it might take a while especially if you run it for the first time.
    ```
-   $ git clone --recursive --depth=1 https://github.com/dusty-nv/jetson-inference
-   $ cd jetson-inference
-   $ docker/run.sh
+   git clone --recursive --depth=1 https://github.com/dusty-nv/jetson-inference
+   cd jetson-inference
+   docker/run.sh
    ```
-2. Test your imagenet to ensure that it's working. It might take a while the first time you run it.
+2. Test your imagenet to ensure that it's working. It might take a while the first time you run each command. You can check the output images at jetson-inference/data/images/test. 
    ```
-   # First, run docker container and go to build/aarch64/bin directory
-   $ cd jetson-inference/build/aarch64/bin
+   # First, run docker container and cd to build/aarch64/bin
+   docker/run.sh
+   cd jetson-inference/build/aarch64/bin
 
-   # 
-   $ ./imagenet.py images/orange_0.jpg images/test/output_0.jpg
+   # Classify the orange pic using the default network googlenet
+   ./imagenet.py images/orange_0.jpg images/test/output_0.jpg
 
-   # 
-   $ ./imagenet.py --network=resnet-18 images/jellyfish.jpg images/test/output_jellyfish.jpg
+   # Classify the jellyfish pic using resnet-18
+   ./imagenet.py --network=resnet-18 images/jellyfish.jpg images/test/output_jellyfish.jpg
 
-   # 
-   $ ./imagenet.py /dev/video0
+   # Run the live camera recognition
+   ./imagenet.py /dev/video0      # if you are using usb webcam
+   ./imagenet.py csi://0          # if you are using raspberry pi camera
    ```
 3. After the jetson-inference docker container is downloaded and you have tested your imagenet, open chromium web browser on your jetson desktop. Then, go to [Kaggle Lettuce Diseases Dataset](https://www.kaggle.com/datasets/santoshshaha/lettuce-plant-disease-dataset) and download it.
    ![image](https://github.com/xiaoxialexazhang/jetson-nano-safe-lettuce/assets/170693946/dc11716d-3142-4794-847d-a15d4c756fea)
@@ -93,18 +95,23 @@ PC/laptop (to flash the SD card)
    Then, Ctrl+x to exit, type Y to save changes, and press enter to confirm that the changes are saved to labels.txt
    ![image](https://github.com/xiaoxialexazhang/jetson-nano-safe-lettuce/assets/170693946/6f0b7c31-47e4-4831-b1c8-a47896961ff8)
 
-8. Now, we are finally done with prep work! We can now proceed on training our lettuce model. 
+8. You can type "exit" to exit the docker container. 
 
-### Training The Model
-run docker container
+Now, we are finally done with prep work! We can now proceed on training our lettuce model.
 
-cd python
-
-cd training
-
-cd classification
-
-python3 train.py --model-dir=models/lettuce --batch-size=4 --epochs=35 data/lettuce
+### Training The Lettuce Model
+1. First, in your terminal, go to jetson-inference and run your docker container. Then, cd to python/training/classification
+   ```
+   cd jetson-inference
+   docker/run.sh
+   cd python/training/classification
+   ```
+2. Now we are about to re-train the resnet-18 model on our lettuce dataset, get excited!
+   Depending on which Jetson you are using, you might want to change the default settings for --batch-size (default 8) and --workers (default 2) to save memory as much as possible. You could also set --epochs (default 35) to be a smaller number if you just want a very quick train and are eager to check out the lettuce health inspection sooner. 
+   ```
+   python3 train.py --model-dir=models/lettuce --batch-size=4 --workers=1 --epochs=35 data/lettuce
+   ```
+3. 
 
 it took around 4 hours for me
 
