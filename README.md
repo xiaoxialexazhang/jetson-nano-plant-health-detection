@@ -90,12 +90,16 @@ PC/laptop (to flash the SD card)
    nano labels.txt
    ```
    ![image](https://github.com/xiaoxialexazhang/jetson-nano-safe-lettuce/assets/170693946/665397f9-eb61-4310-b6c1-3bf5c108c5da)
+
    Edit the labels.txt file. Make sure all labels are in alphabetical order. There should be three labels, each in a line. 
+
    ![image](https://github.com/xiaoxialexazhang/jetson-nano-safe-lettuce/assets/170693946/b9e8bad0-59cb-4c8a-9a52-87230a2f8ac3)
-   Then, Ctrl+x to exit, type Y to save changes, and press enter to confirm that the changes are saved to labels.txt
+
+   Then, Ctrl+X to exit, type Y to save changes, and press enter to confirm that the changes are saved to labels.txt
+
    ![image](https://github.com/xiaoxialexazhang/jetson-nano-safe-lettuce/assets/170693946/6f0b7c31-47e4-4831-b1c8-a47896961ff8)
 
-8. You can type "exit" to exit the docker container. 
+9. You can type "exit" to exit the docker container. 
 
 Now, we are finally done with prep work! We can now proceed on training our lettuce model.
 
@@ -107,13 +111,40 @@ Now, we are finally done with prep work! We can now proceed on training our lett
    cd python/training/classification
    ```
 2. Now we are about to re-train the resnet-18 model on our lettuce dataset, get excited!
-   Depending on which Jetson you are using, you might want to change the default settings for --batch-size (default 8) and --workers (default 2) to save memory as much as possible. You could also set --epochs (default 35) to be a smaller number if you just want a very quick train and are eager to check out the lettuce health inspection sooner. 
+
+   Depending on which Jetson you are using, you might want to change the default settings for --batch-size (default 8) and --workers (default 2) to save memory as much as possible.
+
+   You could also set --epochs (default 35) to be a smaller number if you just want a very quick train and are eager to check out the lettuce health inspection sooner. 
    ```
    python3 train.py --model-dir=models/lettuce --batch-size=4 --workers=1 --epochs=35 data/lettuce
    ```
-3. 
+4. It should take around 5-6 hours to train. During this time, the heating fins on your Jetson will become very hot. Please be careful! 
 
-it took around 4 hours for me
+   To stop the training anytime, press Ctrl+C. To resume training later, use --resume and --epoch-start flags.
+
+   You can also test out other models to re-train by running the following code and later using the --arch flag.
+   ```
+   python3 train.py --help
+   ```
+
+6. After training is done, export the lettuce model into ONNX format. Make sure you are writing this command in jetson-inference/python/training/classificaiton that's inside the docker. 
+   ```
+   python3 onnx_export.py --model-dir=models/lettuce
+   ```
+   
+7. Now, the lettuce model you just traind is ready for testing! You can test it in two ways (make sure you are still in docker and in jetson-inference/python/training/classification):
+
+  - Using the test folder that's already in our lettuce folder:
+    ```
+    # Make directories for the output
+    mkdir data/lettuce/test_bacterial_output data/lettuce
+    
+    imagenet --model=models/lettuce/resnet18.onnx --labels=data/lettuce/labels.txt --input_blob=input_0 --output_blob=output_0 
+    ```
+  - Using your camera to process your lettuce live:
+    ```
+    imagenet --model=models/lettuce/resnet18.onnx --labels=data/lettuce/labels.txt --input_blob=input_0 --output_blob=outpuy_0 /dev/video0
+    ```
 
 python3 onnx_export.py --model-dir=models/lettuce
 
