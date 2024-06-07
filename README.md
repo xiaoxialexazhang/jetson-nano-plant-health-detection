@@ -2,14 +2,15 @@
 
 This is an image classification project built on Jetson Nano that retrains resnet-18 on a lettuce disease dataset and aims to help people identify what's wrong with their lettuce by looking at the lettuce leaves. 
 
-It will classify a lettuce leaf as healthy, bacterially infected, or fungally infected and show how confident it is upon this judgement. Narrowing down the leaf condition to the above 3 classes makes it easier for people to search up online about whether their lettuce is safe to consume or not. 
+It will classify a lettuce leaf as healthy, bacterially infected, or fungally dominated and show how confident it is upon this judgement. Narrowing down the leaf condition to the above 3 classes makes it easier for people to search up online about whether their lettuce is safe to consume or not. 
 
 For example, people can now simply search up "bacterially infected lettuce" without wondering which disease their lettuce have. They can easily answer whether if they can eat the whole thing or they have to compost some parts base on their search results. 
 
-This should thus help us reduce food waste and food poisoning incidents. 
+This could thus help us reduce food waste and food poisoning incidents. 
 
 ## Video
-Here
+
+Here: 
 
 ## Model Accuracy 
 
@@ -18,7 +19,7 @@ image
 
 As shown, 35 epochs will train the model to around 75% accuracy and 50 epochs will make accuracy reach balabala. 
 
-To reach even higher accuracies for safety purposes, I would suggest to try out training using AlexNet or deeper resnet models such as ResNet-50. 
+To reach even higher accuracies for safety purposes, I would suggest trying a larger batch size or training with a different model: AlexNet, VGG, GoogLeNet, or more complex resnet models such as ResNet-50. They just might take much more time to train and you might need a stronger Jetson. 
 
 # Building The Project
 
@@ -185,3 +186,11 @@ Now, the lettuce model you just traind is ready for testing! You can test it in 
     ```
 
 # References
+
+[Jetson-Inference](https://github.com/dusty-nv/jetson-inference/tree/master) 
+
+[Lettuce Plant Disease Dataset](https://www.kaggle.com/datasets/santoshshaha/lettuce-plant-disease-dataset) for the image dataset
+
+[Jetson Nano - Object Detection and Image Classification](https://digitalenvironment.org/jetson-nano-object-detection-and-image-classification/) for the insight on how to achieve higher accuracy
+
+Thank you! 
