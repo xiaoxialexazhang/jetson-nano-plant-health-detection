@@ -8,7 +8,7 @@ For example, people can now simply search up "bacterially infected lettuce" with
 
 This could thus help us reduce food waste and food poisoning incidents. 
 
-## Video & Developer Forum
+## Video & Nvidia Developer Forum
 
 [Safe Lettuce with Jetson Nano](https://youtu.be/Ad-ufSdDZ80)
 
