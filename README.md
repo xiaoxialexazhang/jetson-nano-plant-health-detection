@@ -1,4 +1,5 @@
 # Eat that lettuce or not? Jetson Nano can help! 
+
 This is an image classification project built on Jetson Nano that retrains resnet-18 on a lettuce disease dataset and aims to help people identify what's wrong with their lettuce by looking at the lettuce leaves. 
 
 It will classify a lettuce leaf as healthy, bacterially infected, or fungally infected and show how confident it is upon this judgement. Narrowing down the leaf condition to the above 3 classes makes it easier for people to search up online about whether their lettuce is safe to consume or not. 
@@ -7,7 +8,22 @@ For example, people can now simply search up "bacterially infected lettuce" with
 
 This should thus help us reduce food waste and food poisoning incidents. 
 
-## Requirede Hardwares
+## Video
+Here
+
+## Model Accuracy 
+
+In this project, we are going to train the default ResNet-18 model on a lettuce condition dataset. The model training should take arouhnd 3-4 hours for 35 epochs and around 4-5 hours for 50 epochs. The model accuracy is shown below: 
+image
+
+As shown, 35 epochs will train the model to around 75% accuracy and 50 epochs will make accuracy reach balabala. 
+
+To reach even higher accuracies for safety purposes, I would suggest to try out training using AlexNet or deeper resnet models such as ResNet-50. 
+
+# Building The Project
+
+## Required Hardwares
+
 Jetson Nano 2GB/4GB
 
 Camera (USB webcam/Raspberry Pi camera)
@@ -24,7 +40,8 @@ Memory card (suggest 64GB)
 
 PC/laptop (to flash the SD card)
 
-## Setting Up and First Boot
+## Setting Up And First Boot
+
 1. First, set up your Jetson by following the instructions here: [Setting up Jetson with JetPack](https://github.com/dusty-nv/jetson-inference/blob/master/docs/jetpack-setup-2.md). You may want to connect ethernet cable and your camera during first boot as well.
    
 2. After your successful set up and first boot, you may want to increase swap memory to 4GB by opening up the terminal and write the following commands:
@@ -50,13 +67,16 @@ PC/laptop (to flash the SD card)
    After rebooting, you can check your swap again just to ensure. 
 
 ## Running The Project
+
 ### Preparation
+
 1. [Run the pre-built docker container]( https://github.com/dusty-nv/jetson-inference/blob/master/docs/aux-docker.md), it might take a while especially if you run it for the first time.
    ```
    git clone --recursive --depth=1 https://github.com/dusty-nv/jetson-inference
    cd jetson-inference
    docker/run.sh
    ```
+   
 2. Test your imagenet to ensure that it's working. It might take a while the first time you run each command. You can check the output images at jetson-inference/data/images/test. 
    ```
    # First, run docker container and cd to build/aarch64/bin
@@ -73,6 +93,7 @@ PC/laptop (to flash the SD card)
    ./imagenet.py /dev/video0      # if you are using usb webcam
    ./imagenet.py csi://0          # if you are using raspberry pi camera
    ```
+   
 3. After the jetson-inference docker container is downloaded and you have tested your imagenet, open chromium web browser on your jetson desktop. Then, go to [Kaggle Lettuce Diseases Dataset](https://www.kaggle.com/datasets/santoshshaha/lettuce-plant-disease-dataset) and download it.
    ![image](https://github.com/xiaoxialexazhang/jetson-nano-safe-lettuce/assets/170693946/dc11716d-3142-4794-847d-a15d4c756fea)
    It should contain 2813 images in .jpg and already split into test, train, and val. 
@@ -110,6 +131,7 @@ Now, we are finally done with prep work! We can now proceed on training our lett
    docker/run.sh
    cd python/training/classification
    ```
+   
 2. Now we are about to re-train the resnet-18 model on our lettuce dataset, get excited!
 
    Depending on which Jetson you are using, you might want to change the default settings for --batch-size (default 8) and --workers (default 2) to save memory as much as possible.
@@ -118,6 +140,7 @@ Now, we are finally done with prep work! We can now proceed on training our lett
    ```
    python3 train.py --model-dir=models/lettuce --batch-size=4 --workers=1 --epochs=35 data/lettuce
    ```
+   
 4. It should take around 5-6 hours to train. During this time, the heating fins on your Jetson will become very hot. Please be careful! 
 
    To stop the training anytime, press Ctrl+C. To resume training later, use --resume and --epoch-start flags.
@@ -153,13 +176,12 @@ Now, the lettuce model you just traind is ready for testing! You can test it in 
     imagenet --model=models/lettuce/resnet18.onnx --labels=data/lettuce/labels.txt --input_blob=input_0 --output_blob=output_0 data/lettuce/test/fungal data/lettuce/test_fungal_output
     imagenet --model=models/lettuce/resnet18.onnx --labels=data/lettuce/labels.txt --input_blob=input_0 --output_blob=output_0 data/lettuce/test/healthy data/lettuce/test_healthy_output
     ```
+    ![image](https://github.com/xiaoxialexazhang/jetson-nano-safe-lettuce/assets/170693946/a37d8272-6f79-423b-9810-b2bebac5ae8d)
+
   - Using your camera to process your lettuce live:
     ```
     # csi camera users substitute /dev/video0 with csi://0
     imagenet --model=models/lettuce/resnet18.onnx --labels=data/lettuce/labels.txt --input_blob=input_0 --output_blob=output_0 /dev/video0
     ```
 
-## Video
-Here
-
-## Model Accuracy 
+# References
