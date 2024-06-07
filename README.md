@@ -14,12 +14,13 @@ Here:
 
 ## Model Accuracy 
 
-In this project, we are going to train the default ResNet-18 model on a lettuce condition dataset. The model training should take arouhnd 3-4 hours for 35 epochs and around 4-5 hours for 50 epochs. The model accuracy is shown below: 
+In this project, we are going to train the default ResNet-18 model on a lettuce condition dataset. The model training should take arouhnd 3-4 hours for 35 epochs depending on your batch size and workers. The model accuracy versus epochs chart is shown below: 
+
 image
 
-As shown, 35 epochs will train the model to around 75% accuracy and 50 epochs will make accuracy reach balabala. 
+As shown, 35 epochs will train the model to around 75% accuracy. To reach even higher accuracies for safety purposes, I would suggest trying a larger batch size or epochs count. 
 
-To reach even higher accuracies for safety purposes, I would suggest trying a larger batch size or training with a different model: AlexNet, VGG, GoogLeNet, or more complex resnet models such as ResNet-50. They just might take much more time to train and you might need a stronger Jetson. 
+Training with a different model, for example, AlexNet and more complex ResNet models such as ResNet-50 or ResNet-152, can also effectively increase accuracy. They just might take much more time to train. 
 
 # Building The Project
 
@@ -142,7 +143,7 @@ Now, we are finally done with prep work! We can now proceed on training our lett
    python3 train.py --model-dir=models/lettuce --batch-size=4 --workers=1 --epochs=35 data/lettuce
    ```
    
-4. It should take around 5-6 hours to train. During this time, the heating fins on your Jetson will become very hot. Please be careful! 
+4. It should take around 3-4 hours to train. During this time, the heating fins on your Jetson will become very hot. Please be careful! 
 
    To stop the training anytime, press Ctrl+C. To resume training later, use --resume and --epoch-start flags.
 
