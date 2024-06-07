@@ -1,7 +1,7 @@
 # Eat that lettuce or not? Jetson Nano can help! 
 This is an image classification project built on Jetson Nano that retrains resnet-18 on a lettuce disease dataset and aims to help people identify what's wrong with their lettuce by looking at the lettuce leaves. 
 
-It will classify a lettuce leaf as healthy, bacterially infected, or virally infected and show how confident it is upon this judgement. Narrowing down the leaf condition to the above 3 classes makes it easier for people to search up online about whether their lettuce is safe to consume or not. 
+It will classify a lettuce leaf as healthy, bacterially infected, or fungally infected and show how confident it is upon this judgement. Narrowing down the leaf condition to the above 3 classes makes it easier for people to search up online about whether their lettuce is safe to consume or not. 
 
 For example, people can now simply search up "bacterially infected lettuce" without wondering which disease their lettuce have. They can easily answer whether if they can eat the whole thing or they have to compost some parts base on their search results. 
 
@@ -131,23 +131,25 @@ Now, we are finally done with prep work! We can now proceed on training our lett
    ```
    python3 onnx_export.py --model-dir=models/lettuce
    ```
+   ![image](https://github.com/xiaoxialexazhang/jetson-nano-safe-lettuce/assets/170693946/9757b992-8576-43f0-ab79-10e9fd481581)
+
    
 7. Now, the lettuce model you just traind is ready for testing! You can test it in two ways (make sure you are still in docker and in jetson-inference/python/training/classification):
 
   - Using the test folder that's already in our lettuce folder:
     ```
     # Make directories for the output
-    mkdir data/lettuce/test_bacterial_output data/lettuce
-    
-    imagenet --model=models/lettuce/resnet18.onnx --labels=data/lettuce/labels.txt --input_blob=input_0 --output_blob=output_0 
+    mkdir data/lettuce/test_bacterial_output data/lettuce/test_fungal_output data/lettuce/test_healthy_output
+
+    # Process all the test images
+    imagenet --model=models/lettuce/resnet18.onnx --labels=data/lettuce/labels.txt --input_blob=input_0 --output_blob=output_0 data/lettuce/test/Bacterial data/lettuce/test_bacterial_output
+    imagenet --model=models/lettuce/resnet18.onnx --labels=data/lettuce/labels.txt --input_blob=input_0 --output_blob=output_0 data/lettuce/test/fungal data/lettuce/test_fungal_output
+    imagenet --model=models/lettuce/resnet18.onnx --labels=data/lettuce/labels.txt --input_blob=input_0 --output_blob=output_0 data/lettuce/test/healthy data/lettuce/test_healthy_output
     ```
   - Using your camera to process your lettuce live:
     ```
-    imagenet --model=models/lettuce/resnet18.onnx --labels=data/lettuce/labels.txt --input_blob=input_0 --output_blob=outpuy_0 /dev/video0
+    # csi camera users substitute /dev/video0 with csi://0
+    imagenet --model=models/lettuce/resnet18.onnx --labels=data/lettuce/labels.txt --input_blob=input_0 --output_blob=output_0 /dev/video0
     ```
 
-python3 onnx_export.py --model-dir=models/lettuce
-
-imagenet --model=models/lettuce/resnet18.onnx --labels=data/lettuce/labels.txt --input_blob=input_0 --output_blob=output_0 /dev/video0
-
-
+## Video
